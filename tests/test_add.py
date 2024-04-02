@@ -1,6 +1,6 @@
 import os
 import pytest
-from app import add_project
+from app import add_projects_root
 from tests import set_keyboard_input, get_display_output, db_test, dbtest_path, reset_db
 
 test_folder = os.path.join(os.path.dirname(__file__), "test_folder")
@@ -11,7 +11,7 @@ def test_add():
     print("add in process...")
     set_keyboard_input(["test", test_folder])
 
-    add_project(db_test, dbtest_path)
+    add_projects_root(db_test, dbtest_path)
     output = get_display_output()
 
     assert output == [
@@ -26,7 +26,7 @@ def test_fail_add_existing_name():
     set_keyboard_input(["test"])
 
     with pytest.raises(IndexError):
-        add_project(db_test, dbtest_path)
+        add_projects_root(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -42,7 +42,7 @@ def test_fail_add_incorect_route():
     set_keyboard_input(["test2", "test/path"])
 
     with pytest.raises(IndexError):
-        add_project(db_test, dbtest_path)
+        add_projects_root(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -59,7 +59,7 @@ def test_fail_add_existing_path():
     set_keyboard_input(["test2", test_folder])
 
     with pytest.raises(IndexError):
-        add_project(db_test, dbtest_path)
+        add_projects_root(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -76,7 +76,7 @@ def test_fail_add_all():
     set_keyboard_input(["test", "test2", "test/path", test_folder])
 
     with pytest.raises(IndexError):
-        add_project(db_test, dbtest_path)
+        add_projects_root(db_test, dbtest_path)
 
     output = get_display_output()
 
