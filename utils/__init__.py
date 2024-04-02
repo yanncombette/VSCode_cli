@@ -9,4 +9,4 @@ from .common import (
     db_path,
 )
 
-from .messages import open_messages, add_messages, create_messages
+from .messages import open_messages, add_messages, create_messages, remove_messages
