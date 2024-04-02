@@ -60,3 +60,49 @@ def open_messages(message_type, project_name=None, selected_project_root=None):
             return messages[message_type]
     else:
         return "Invalid message type"
+
+
+def remove_messages(message_type, project_root_name=None):
+    messages = {
+        "input_confirmation_message": "Are you sure you want to remove '{project_root_name}' from the database? [Y/n] ",
+        "Project_removed_message": "Project {project_root_name} removed from db.",
+        "project_not_found_message": "Project {project_root_name} not found.",
+        "canel_remove_message": "Removal canceled.",
+    }
+
+    if message_type in messages:
+        if (
+            message_type == "input_confirmation_message"
+            or message_type == "Project_removed_message"
+            or message_type == "project_not_found_message"
+        ):
+            return messages[message_type].format(project_root_name=project_root_name)
+        else:
+            return messages[message_type]
+    else:
+        return "Invalid message type"
+
+
+def edit_messages(message_type, project_root_name=None):
+    messages = {
+        "make_a_choice_message": "Do you want to edit project's name 'n' or path 'p' ?",
+        "invalid_choice_message": "Invalid choice. Please enter 'n' to edit name or 'r' to edit root.",
+        "input_new_name_message": "Enter the new name: ",
+        "error_project_exists_message": "Error: The specified project name already exists in the database. Please enter a unique name.",
+        "input_new_path_message": "Enter the new path: ",
+        "error_path_exists_message": "Error: The specified directory path already exists in the database.",
+        "error_invalid_path_message": "Error: The specified directory does not exist. Please enter a valid directory path.",
+        "success_modif_name_message": "Name '{project_root_name}' modified successfully!",
+        "success_modif_path_message": "Path '{project_root_name}' modified successfully!",
+    }
+
+    if message_type in messages:
+        if (
+            message_type == "success_modif_name_message"
+            or message_type == "success_modif_path_message"
+        ):
+            return messages[message_type].format(project_root_name=project_root_name)
+        else:
+            return messages[message_type]
+    else:
+        return "Invalid message type"
