@@ -74,3 +74,29 @@ To use the CLI tool, follow these steps:
 For example:
 ```bash
 vscode -o
+```
+
+## Contribution Guidelines
+
+Thank you for considering contributing to this project! To maintain consistency and manage changes effectively, please adhere to the following guidelines:
+
+- **Branches**: 
+  - Only push changes to the `dev` branch or create a new branch from `dev` for your modifications.
+  - Avoid directly committing to the `main` branch.
+
+- **Pull Requests (PRs)**:
+  - After pushing your modifications, open a pull request targeting the `dev` branch.
+  - Provide a clear and descriptive title for your PR.
+  - Explain the purpose and scope of your changes in the description.
+  - Ensure all tests pass and the code follows the project's coding standards.
+
+- **Code Reviews**:
+  - All changes must pass a code review before merging.
+  - Address any feedback or comments from reviewers promptly.
+
+- **Issues**:
+  - Report any bugs, feature requests, or other issues using the project's issue tracker.
+  - Provide sufficient detail to reproduce the issue, if applicable.
+  - Label issues appropriately to facilitate organization and prioritization.
+
+Your contributions are valuable and help improve the project for everyone. Thank you for your collaboration!
