@@ -14,29 +14,28 @@ class Project:
 
 
 def open_project_in_vscode(project_path):
-    vscode_command = ["code", project_path]
-    subprocess.run(vscode_command)
+    subprocess.run(["code", project_path])
 
 
-def select_project_root(projects):
-    if not projects:
+def select_project_root(projects_roots_list):
+    if not projects_roots_list:
         print(
             f"\nThere are no project roots in your database. Please run the script using '-a' or '-h' for help.\n"
         )
         sys.exit(1)
 
     print("\nSelect a project:")
-    for idx, project in enumerate(projects, start=1):
-        print(f"{project.id}. {project.name}")
+    for idx, projects_roots in enumerate(projects_roots_list, start=1):
+        print(f"{projects_roots.id}. {projects_roots.name}")
 
-    options = "/".join(str(i) for i in range(1, len(projects) + 1))
+    options = "/".join(str(i) for i in range(1, len(projects_roots_list) + 1))
     choice = input(f"\nEnter your choice from ({options}): ")
 
-    if choice.isdigit() and 1 <= int(choice) <= len(projects):
-        return projects[int(choice) - 1]
+    if choice.isdigit() and 1 <= int(choice) <= len(projects_roots_list):
+        return projects_roots_list[int(choice) - 1]
     else:
         print("Invalid choice. Please enter a valid option.")
-        return select_project_root(projects)
+        return select_project_root(projects_roots_list)
 
 
 def load_db():
@@ -51,13 +50,12 @@ def load_db():
     return [Project(item["id"], item["name"], item["path"]) for item in data]
 
 
-def check_directories(projects):
+def check_directories(projects_roots_list):
     false_path = False
     project_name = None
-    for project in projects:
-        if not os.path.exists(project.path):
+    for projects_root in projects_roots_list:
+        if not os.path.exists(projects_root.path):
             false_path = True
-            project_name = project.name
-            break #todo if there are more than one incorect path, i should be able to colecte a aray pf names
+            project_name = projects_root.name
+            break  # todo if there are more than one incorect path, i should be able to colecte a aray pf names
     return false_path, project_name
-
