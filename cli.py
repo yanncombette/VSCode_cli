@@ -1,4 +1,4 @@
-from app import open_project, create_project, add_project
+from app import open_project, create_project, add_project, remove_project
 from utils import load_db, db_path
 import sys
 
@@ -12,6 +12,7 @@ Commands:
   -c, --create    Create a new project
   -o, --open      Open an existing project
   -a, --add       Add new projects directory
+  -r, --remove    remove projects directory
   -h, --help      Show this help message
 """
     )
@@ -32,6 +33,8 @@ def main():
             open_project(load_db())
         elif command in ["-a", "--add"]:
             add_project(load_db(), db_path)
+        elif command in ["-r", "--remove"]:
+            remove_project(load_db(), db_path)
         else:
             print("Invalid command. Use '-h' or '--help' for usage instructions.")
             show_help()
