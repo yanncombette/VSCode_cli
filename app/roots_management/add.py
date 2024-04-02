@@ -1,7 +1,7 @@
 from utils import Project, json, os, add_messages as get_message
 
 
-def add_project(projects_root, db_path):
+def add_projects_root(projects_root, db_path):
     project_id = get_next_project_id(projects_root)
     project_name = prompt_for_name(get_message("input_name_message"), projects_root)
     project_path = prompt_for_directory(
@@ -52,4 +52,4 @@ def execute_add(project_id, project_name, project_path, projects, db_path):
 
 
 if __name__ == "__main__":
-    add_project()
+    add_projects_root()

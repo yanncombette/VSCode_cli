@@ -1,7 +1,7 @@
 from utils import json, select_project_root, remove_messages as get_message
 
 
-def remove_project(projects_root, db_path):
+def remove_projects_root(projects_root, db_path):
     selected_project_root = select_project_root(projects_root)
     execute_project(selected_project_root, db_path)
 
@@ -36,4 +36,4 @@ def execute_project(selected_project_root, db_path):
 
 
 if __name__ == "__main__":
-    remove_project()
+    remove_projects_root()

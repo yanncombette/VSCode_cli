@@ -1,4 +1,4 @@
-from app import open_project, create_project, add_project, remove_project, edit_project
+from app import open_project, create_project, add_projects_root, remove_projects_root, edit_projects_root
 from utils import load_db, db_path
 import sys
 
@@ -33,11 +33,11 @@ def main():
         elif command in ["-o", "--open"]:
             open_project(load_db())
         elif command in ["-a", "--add"]:
-            add_project(load_db(), db_path)
+            add_projects_root(load_db(), db_path)
         elif command in ["-e", "--edit"]:
-            edit_project(load_db(), db_path)
+            edit_projects_root(load_db(), db_path)
         elif command in ["-r", "--remove"]:
-            remove_project(load_db(), db_path)
+            remove_projects_root(load_db(), db_path)
         else:
             print("Invalid command. Use '-h' or '--help' for usage instructions.")
             show_help()

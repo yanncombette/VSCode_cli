@@ -1,7 +1,7 @@
 from utils import os, json, select_project_root, edit_messages as get_message
 
 
-def edit_project(projects_root, db_path):
+def edit_projects_root(projects_root, db_path):
     selected_project_root = select_project_root(projects_root)
 
     while True:
@@ -58,4 +58,4 @@ def update_project_db(projects_root, db_path, selected_project_root):
 
 
 if __name__ == "__main__":
-    edit_project()
+    edit_projects_root()
