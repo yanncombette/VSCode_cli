@@ -1,4 +1,10 @@
-from app import open_project, create_project, add_projects_root, remove_projects_root, edit_projects_root
+from app import (
+    open_project,
+    create_project,
+    add_projects_root,
+    remove_projects_root,
+    edit_projects_root,
+)
 from utils import load_db, db_path
 import sys
 
@@ -31,7 +37,7 @@ def main():
         elif command in ["-c", "--create"]:
             create_project(load_db())
         elif command in ["-o", "--open"]:
-            open_project(load_db())
+            open_project(load_db(), db_path)
         elif command in ["-a", "--add"]:
             add_projects_root(load_db(), db_path)
         elif command in ["-e", "--edit"]:

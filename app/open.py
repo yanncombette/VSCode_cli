@@ -1,3 +1,4 @@
+from .roots_management import edit_projects_root, remove_projects_root
 from utils import (
     os,
     select_project_root,
@@ -7,16 +8,47 @@ from utils import (
 )
 
 
-def open_project(projects_roots_list):
-    false_path, project_name = check_directories(projects_roots_list)
+def open_project(projects_roots_list, db_path):
+    false_path, projects_root = check_directories(projects_roots_list)
     if false_path:
-        input(
-            f"\n[WARNING]: Project root '{project_name}' has been moved or erased. Do you want to continue? [y/N]: "
+        print(
+            f"\n[WARNING]: Project root '{projects_root.name}' has been moved or erased."
         )
 
+        open_path_correction(projects_roots_list, db_path, projects_root, false_path)
+
     selected_projects_root = select_project_root(projects_roots_list)
+
+    if selected_projects_root == projects_root:
+        print(f"\n[ERROR]: you must edit path or remove '{projects_root.name}' .")
+        open_path_correction(projects_roots_list, db_path, projects_root)
+
     project_name = input(get_message("input_project_name_message"))
+
     execute_project(selected_projects_root, project_name)
+
+
+def open_path_correction(projects_roots_list, db_path, projects_root, false_path=None):
+    message = "Enter 'e' to edit, 'r' to remove"
+    if false_path:
+        message += ", or press Enter to continue"
+    message += ": "
+
+    while True:
+        user_input = input(message).lower()
+        if user_input == "e":
+            edit_projects_root(projects_roots_list, db_path, projects_root)
+            return
+        elif user_input == "r":
+            remove_projects_root(projects_roots_list, db_path, projects_root)
+            return
+        elif user_input.strip() == "":
+            if false_path:
+                return
+            else:
+                print("Invalid input. Please enter 'e' or 'r'.")
+        else:
+            print("Invalid input. Please enter 'e' or 'r'.")
 
 
 def execute_project(selected_projects_root, project_name):

@@ -1,12 +1,17 @@
 from utils import json, select_project_root, remove_messages as get_message
 
 
-def remove_projects_root(projects_roots_list, db_path):
+def remove_projects_root(projects_roots_list, db_path, projects_root=None):
+    if projects_root :
+        if execute_remove(projects_root, db_path):
+            return
+
+
     selected_projects_root = select_project_root(projects_roots_list)
-    execute_project(selected_projects_root, db_path)
+    execute_remove(selected_projects_root, db_path)
 
 
-def execute_project(selected_projects_root, db_path):
+def execute_remove(selected_projects_root, db_path):
     confirmation = (
         input(get_message("input_confirmation_message", selected_projects_root.name))
         .strip()

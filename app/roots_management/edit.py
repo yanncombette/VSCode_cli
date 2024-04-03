@@ -1,7 +1,14 @@
 from utils import os, json, select_project_root, edit_messages as get_message
 
 
-def edit_projects_root(projects_roots_list, db_path):
+def edit_projects_root(projects_roots_list, db_path, projects_root=None):
+    if projects_root:
+        print(f"the path for this projects root is: {projects_root.path}")
+        projects_root.path = validate_projects_root_path(projects_roots_list)
+        print(get_message("success_modif_path_message", projects_root.name))
+        execute_edit(projects_root, db_path)
+        return
+
     selected_projects_root = select_project_root(projects_roots_list)
 
     while True:

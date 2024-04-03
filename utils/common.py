@@ -52,10 +52,10 @@ def load_db():
 
 def check_directories(projects_roots_list):
     false_path = False
-    project_name = None
+    projects_root = None
     for projects_root in projects_roots_list:
         if not os.path.exists(projects_root.path):
             false_path = True
-            project_name = projects_root.name
+            projects_root = projects_root
             break  # todo if there are more than one incorect path, i should be able to colecte a aray pf names
-    return false_path, project_name
+    return false_path, projects_root
