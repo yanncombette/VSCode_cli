@@ -9,13 +9,11 @@ from utils import (
 
 
 def open_project(projects_roots_list, db_path):
-    false_path, projects_root = check_directories(projects_roots_list)
-    if false_path:
-        print(
-            f"\n[WARNING]: Project root '{projects_root.name}' has been moved or erased."
+    projects_root = check_directories(projects_roots_list)
+    if projects_root:
+        open_path_correction(
+            projects_roots_list, db_path, projects_root, false_path=True
         )
-
-        open_path_correction(projects_roots_list, db_path, projects_root, false_path)
 
     selected_projects_root = select_project_root(projects_roots_list)
 

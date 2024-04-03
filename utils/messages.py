@@ -106,3 +106,4 @@ def edit_messages(message_type, project_root_name=None):
             return messages[message_type]
     else:
         return "Invalid message type"
+
