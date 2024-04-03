@@ -70,9 +70,9 @@ def validate_projects_root_path(message, projects_roots_list):
             ):
                 return new_projects_root_path
             else:
-                print("error_path_exists_message")
+                print("Error: The specified directory path already exists in the database.")
         else:
-            print("error_invalid_path_message")
+            print("Error: The specified directory does not exist. Please enter a valid directory path.")
 
 
 def validate_projects_root_name(message, projects_roots_list):
@@ -81,8 +81,8 @@ def validate_projects_root_name(message, projects_roots_list):
         if check_projects_root_db(new_projects_root_name, projects_roots_list, "name"):
             return new_projects_root_name
         else:
-            print("error_project_exists_message")
-            message = "input_name2_message"
+            print("Error: The specified project name already exists in the database. Please enter a unique name.")
+            message = "enter a different name: "
 
 
 def validate_projects_root_id(message, projects_roots_list):
@@ -111,7 +111,7 @@ def select_project_root(projects_roots_list):
         print(f"{projects_root.id}. {projects_root.name}")
 
     valid_ids = [str(root.id) for root in projects_roots_list]
-    choice = input(f"\nEnter the id of your choice: ")
+    choice = input(f"\nEnter your choice from ({'/'.join(valid_ids)}): ")
 
     # todo implementing validate_projects_root_id()
     if choice in valid_ids:
@@ -119,13 +119,16 @@ def select_project_root(projects_roots_list):
             if str(projects_root.id) == choice:
                 return projects_root
     else:
-        print("Invalid choice. Please enter a valid id.")
+        print("Invalid choice. Please enter a valid option.")
         return select_project_root(projects_roots_list)
 
 
 def check_directories(projects_roots_list):
     for projects_root in projects_roots_list:
         if not os.path.exists(projects_root.path):
+            print(
+                f"\n[WARNING]: Project root '{projects_root.name}' has been moved or erased."
+            )
             # todo if there are more than one incorect path, i should be able to colecte a aray pf names
             return projects_root
     return None

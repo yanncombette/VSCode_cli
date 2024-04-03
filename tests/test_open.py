@@ -7,6 +7,7 @@ from tests import (
     reset_db,
     delete_test_project_folder,
     db_test,
+    dbtest_path
 )
 
 
@@ -14,7 +15,7 @@ def test_open():
 
     set_keyboard_input(["1", "test_project"])
 
-    open_project(db_test)
+    open_project(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -32,7 +33,7 @@ def test_open_using_question():
     set_keyboard_input(["1", "?"])
 
     with pytest.raises(IndexError):
-        open_project(db_test)
+        open_project(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -52,7 +53,7 @@ def test_fail_open_wrong_directory_input():
     set_keyboard_input(["2"])
 
     with pytest.raises(IndexError):
-        open_project(db_test)
+        open_project(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -72,7 +73,7 @@ def test_fail_open_wrong_project_name_input():
     set_keyboard_input(["1", "incorect_project"])
 
     with pytest.raises(IndexError):
-        open_project(db_test)
+        open_project(db_test, dbtest_path)
 
     output = get_display_output()
 
@@ -92,7 +93,7 @@ def test_fail_open_moved_or_erased_Project_root():
     delete_test_project_folder()
 
     with pytest.raises(IndexError):
-        open_project(db_test)
+        open_project(db_test, dbtest_path)
 
     output = get_display_output()
 
