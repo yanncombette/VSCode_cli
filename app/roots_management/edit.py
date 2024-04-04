@@ -20,7 +20,7 @@ def edit_projects_root(projects_roots_list, db_path, projects_root=None):
 
     while True:
         print(get_message("make_a_choice_message"))
-        choice = input().strip().lower()
+        choice = input("").strip().lower()
 
         if choice == "n":
             selected_projects_root.name = validate_projects_root_name(
