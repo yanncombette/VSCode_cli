@@ -1,7 +1,7 @@
 import os
 import pytest
 from app import add_projects_root
-from tests import set_keyboard_input, get_display_output, db_test, dbtest_path, reset_db
+from tests import set_keyboard_input, get_display_output, db_test, dbtest_path
 
 test_folder = os.path.join(os.path.dirname(__file__), "test_folder")
 

@@ -6,7 +6,7 @@ import sys
 import subprocess
 
 # cloning database...
-data = []
+
 dbtest_path = os.path.join(os.path.dirname(__file__), "dbtest.json")
 test_project = os.path.join(os.path.dirname(__file__), "test_folder/test_project")
 
@@ -31,11 +31,6 @@ def load_db():
 
 
 db_test = load_db()
-
-
-def reset_db():
-    with open(dbtest_path, "w") as f:
-        json.dump(data, f, indent=4)
 
 
 def delete_test_project_folder():
